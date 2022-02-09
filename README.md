@@ -34,7 +34,7 @@ The project is only supposed to support TDD and does not substitute other means 
 
 # Dependencies and observations
 - Google Test's version present in CMakeLists comes from its tutorial. Other versions can be experimented
-- SystemC 2.3.3 used, [https://www.accellera.org/downloads/standards/systemc](compiled from source)
+- SystemC 2.3.3 used, (https://www.accellera.org/downloads/standards/systemc) compiled from source
     - It should be compiled with the std=c++11 flag to be compatible with gtest!
     - Modify CMakeLists' SYSTEMC_PATH to your own SystemC Home path
     - Change line 25 "find_library (...)" from lib-linux64 to the equivalent of your system
