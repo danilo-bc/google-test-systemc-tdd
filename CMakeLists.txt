@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.18)
 project(google-test-systemc)
 
+# Set SystemC environment ###############################################
+set (SYSTEMC_PATH /opt/systemc)
+include_directories(${SYSTEMC_PATH}/include)
+find_library(systemc systemc REQUIRED PATHS ${SYSTEMC_PATH}/lib)
+link_directories(${SYSTEMC_PATH}/lib)
+##########################################################################
+
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
 # For SystemC requirements
@@ -18,12 +25,6 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-
-set (SYSTEMC_PATH /home/dan/Downloads/systemc-2.3.3/systemc-2.3.3-compilado)
-
-include_directories(${SYSTEMC_PATH}/include)
-find_library(systemc systemc REQUIRED PATHS ${SYSTEMC_PATH}/lib-linux64)
-link_directories(${SYSTEMC_PATH}/lib-linux64)
 
 add_executable(
   test_counter3
