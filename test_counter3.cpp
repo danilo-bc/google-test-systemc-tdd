@@ -11,18 +11,18 @@ using namespace std;
 #include "counter3.h"
 
 TEST(Counter3Basics, IncrementOneOnlyIncrementsByOne){
-    counter3 dut("MYCOUNTER3");
+    counter3 dut("");
     int x = 0;
     x = dut.increment_one(x);
     EXPECT_EQ(1, x);
 
     x = 5;
     x = dut.increment_one(x);
-    EXPECT_EQ(5, x);
+    EXPECT_EQ(6, x);
 }
 
 TEST(Counter3Basics, IncrementOneOverflowsAfter7){
-    counter3 dut("MYCOUNTER3_3");
+    counter3 dut("");
     int x = 0;
     for(int i = 0; i < 7; i++){
         x = dut.increment_one(x);
