@@ -10,25 +10,36 @@ using namespace std;
 
 #include "counter3.h"
 
-TEST(Counter3Basics, IncrementOneOnlyIncrementsByOne){
-    counter3 dut("");
+// Test fixture, modify SetUp() or TearDown()
+class Counter3Basics : public testing::Test{
+    protected:
+        void SetUp() override {
+            dut = new counter3("");
+        }
+        void TearDown() override {
+            delete dut;
+        }
+
+        counter3 *dut;
+};
+
+TEST_F(Counter3Basics, IncrementOneOnlyIncrementsByOne){
     int x = 0;
-    x = dut.increment_one(x);
+    x = dut->increment_one(x);
     EXPECT_EQ(1, x);
 
     x = 5;
-    x = dut.increment_one(x);
-    EXPECT_EQ(6, x);
+    x = dut->increment_one(x);
+    EXPECT_EQ(5, x);
 }
 
-TEST(Counter3Basics, IncrementOneOverflowsAfter7){
-    counter3 dut("");
+TEST_F(Counter3Basics, IncrementOneOverflowsAfter7){
     int x = 0;
     for(int i = 0; i < 7; i++){
-        x = dut.increment_one(x);
+        x = dut->increment_one(x);
         EXPECT_EQ(1 + i, x);
     }
-    x = dut.increment_one(x);
+    x = dut->increment_one(x);
     EXPECT_EQ(0, x);
 }
 
